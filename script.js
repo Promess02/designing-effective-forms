@@ -4,6 +4,7 @@ const countryInput = document.getElementById('country');
 const myForm = document.getElementById('form');
 const modal = document.getElementById('form-feedback-modal');
 const clicksInfo = document.getElementById('click-count');
+const countryCode = document.getElementById('countryCode');
 
 function handleClick() {
     clickCount++;
@@ -29,7 +30,12 @@ function getCountryByIP() {
         .then(response => response.json())
         .then(data => {
             const country = data.country;
-            // TODO inject country to form and call getCountryCode(country) function
+            const option = document.createElement('option');
+            option.value = country;
+            option.textContent = country;
+            option.selected = true;
+            countryInput.appendChild(option);
+            return country;
         })
         .catch(error => {
             console.error('Błąd pobierania danych z serwera GeoJS:', error);
@@ -47,8 +53,12 @@ function getCountryCode(countryName) {
         return response.json();
     })
     .then(data => {        
-        const countryCode = data[0].idd.root + data[0].idd.suffixes.join("")
-        // TODO inject countryCode to form
+        const code = data[0].idd.root + data[0].idd.suffixes.join("")
+        const option = document.createElement('option');
+        option.value = code;
+        option.textContent = code;
+        option.selected = true;
+        countryCode.appendChild(option);
     })
     .catch(error => {
         console.error('Wystąpił błąd:', error);
@@ -60,5 +70,18 @@ function getCountryCode(countryName) {
     // nasłuchiwania na zdarzenie kliknięcia myszką
     document.addEventListener('click', handleClick);
 
+    document.querySelectorAll('input[name="invoiceChoice"]').forEach(function(radio) {
+        radio.addEventListener('change', function() {
+            var invoiceFields = document.getElementById('invoiceFields');
+            if (document.getElementById('invoiceYes').checked) {
+                invoiceFields.style.display = 'block';
+            } else {
+                invoiceFields.style.display = 'none';
+            }
+        });
+    });
+
     fetchAndFillCountries();
+    const country = getCountryByIP();
+    getCountryCode(country);
 })()

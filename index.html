@@ -26,15 +26,8 @@
                 <input type="text" class="form-control" id="lastName" placeholder="Wpisz nazwisko" required>
             </div>
             <div class="mb-3">
-                <label for="street" class="form-label">Ulica</label>
-                <input type="text" class="form-control" id="street" placeholder="Wpisz ulicę" required>
-            </div>
-            <div class="mb-3">
-                <label for="country" class="form-label">Kraj</label>
-                <select class="form-select" id="country" required>
-                    <option value="">Wybierz kraj</option>
-                    <!-- Options will be filled by JavaScript -->
-                </select>
+                <label for="exampleInputEmail1" class="form-label">Adres e-mail</label>
+                <input type="email" class="form-control" id="exampleInputEmail1">
             </div>
             <div class="row mb-3">
                 <label for="phoneNumber" class="form-label">Numer telefonu komórkowego</label>
@@ -50,55 +43,83 @@
                 </div>
             </div>
             <div class="mb-3">
+                <label for="country" class="form-label">Kraj</label>
+                <select class="form-select" id="country" required>
+                    <option value="">Wybierz kraj</option>
+                    <!-- Options will be filled by JavaScript -->
+                </select>
+            </div>
+            <div class="mb-3">
                 <label for="city" class="form-label">Miasto</label>
                 <input type="text" class="form-control" id="city" placeholder="Wpisz miasto" required>
+            </div>
+            <div class="mb-3">
+                <label for="street" class="form-label">Ulica</label>
+                <input type="text" class="form-control" id="street" placeholder="Wpisz ulicę" required>
             </div>
             <div class="mb-3">
                 <label for="zipCode" class="form-label">Kod pocztowy</label>
                 <input type="text" class="form-control" id="zipCode" placeholder="Wpisz kod pocztowy" required>
             </div>
             <div class="mb-3">
-                <label for="shippingMethod" class="form-label">Rodzaj przesyłki</label>
-                <select class="form-select" id="shippingMethod" required>
-                    <option value="">Wybierz rodzaj przesyłki</option>
-                    <option value="DPD">DPD</option>
-                    <option value="InPost">InPost</option>
-                </select>
+                <label class="form-label">Rodzaj przesyłki</label>
+                <div class="form- form-check-inline ms-5">
+                    <input class="form-check-input" type="radio" name="shipChoice" id="dpd" value="DPD">
+                    <label class="form-check-label" for="dpd">DPD</label>
+                </div>
+                <div class="form- form-check-inline">
+                    <input class="form-check-input" type="radio" name="shipChoice" id="inpost" value="inpost">
+                    <label class="form-check-label" for="inpost">Inpost</label>
+                </div>
             </div>
             <div class="mb-3">
-                <label for="paymentMethod" class="form-label">Rodzaj płatności</label>
-                <select class="form-select" id="paymentMethod" required>
-                    <option value="">Wybierz rodzaj płatności</option>
-                    <option value="karta">Karta</option>
-                    <option value="blik">BLIK</option>
-                    <option value="pośrednik">Pośrednik płatności</option>
-                </select>
+                <label class="form-label">Rodzaj płatności</label>
+                <div class="form- form-check-inline ms-5">
+                    <input class="form-check-input" type="radio" name="payChoice" id="Karta" value="Karta">
+                    <label class="form-check-label" for="Karta">Karta</label>
+                </div>
+                <div class="form- form-check-inline">
+                    <input class="form-check-input" type="radio" name="payChoice" id="BLIK" value="BLIK">
+                    <label class="form-check-label" for="BLIK">BLIK</label>
+                </div>
+                <div class="form- form-check-inline">
+                    <input class="form-check-input" type="radio" name="payChoice" id="posrednik" value="posrednik">
+                    <label class="form-check-label" for="posrednik">Pośrednik płatności</label>
+                </div>
             </div>
 
-            <!-- Dodatkowe pola, np. dane do faktury -->
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1">
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
-            </div>
-            <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="vatUE">
-                <label class="form-check-label" for="vatUE">VAT UE</label>
-            </div>
-            <div class="mb-3">
-                <label for="vatNumber" class="form-label">VAT Number</label>
-                <input type="text" class="form-control" id="vatNumber" aria-describedby="vatHelp">
-                <div id="vatHelp" class="form-text">Kod kraju państwa członkowskiego i seria cyfr unikalnych dla tego
-                    podmiotu gospodarczego.</div>
-            </div>
+<!-- Switch to enable invoice fields -->
+<div class="mb-3">
+    <label class="form-label">Potrzebujesz fakturę?</label>
+    <div class="form- form-check-inline ms-5">
+        <input class="form-check-input" type="radio" name="invoiceChoice" id="invoiceYes" value="yes">
+        <label class="form-check-label" for="invoiceYes">Tak</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="invoiceChoice" id="invoiceNo" value="no" checked>
+        <label class="form-check-label" for="invoiceNo">Nie</label>
+    </div>
+</div>
 
-            <div class="mb-3">
-                <label for="invoiceData" class="form-label">Dane do faktury</label>
-                <textarea class="form-control" id="invoiceData" rows="3" placeholder="Wpisz dane do faktury"></textarea>
-            </div>
+
+<!-- Fields for VAT Number and Invoice Data (hidden by default) -->
+<div id="invoiceFields" style="display: none;">
+    <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="vatUE">
+        <label class="form-check-label" for="vatUE">VAT UE</label>
+    </div>
+    <div class="mb-3">
+        <label for="vatNumber" class="form-label">Numer VAT</label>
+        <input type="text" class="form-control" id="vatNumber" aria-describedby="vatHelp">
+        <div id="vatHelp" class="form-text">Kod kraju państwa członkowskiego i seria cyfr unikalnych dla tego
+            podmiotu gospodarczego.</div>
+    </div>
+
+    <div class="mb-3">
+        <label for="invoiceData" class="form-label">Dane do faktury</label>
+        <textarea class="form-control" id="invoiceData" rows="3" placeholder="Wpisz dane do faktury"></textarea>
+    </div>
+</div>
 
             <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
                 data-bs-target="#form-feedback-modal">submit</button>

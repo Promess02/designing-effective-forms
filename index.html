@@ -27,12 +27,13 @@
             </div>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Adres e-mail</label>
-                <input type="email" class="form-control" id="exampleInputEmail1">
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Wpisz adres e-mail">
+                <div class="error-message text-danger mt-1" style="display: none;">Podaj poprawny adres e-mail.</div>
             </div>
             <div class="row mb-3">
                 <label for="phoneNumber" class="form-label">Numer telefonu komórkowego</label>
                 <div class="input-group">
-                    <select class="form-select" id="countryCode" aria-label="Wybierz numer kierunkowy">
+                    <select class="form-select" id="countryCode" aria-label="Wybierz numer kierunkowy" style="flex: 0 0 20%;">
                         <option selected>Wybierz...</option>
                         <option value="+48">+48 (Polska)</option>
                         <option value="+1">+1 (Stany Zjednoczone)</option>
@@ -41,14 +42,13 @@
                     <input type="text" class="form-control" id="phoneNumber" placeholder="Wpisz numer komórkowy"
                         required>
                 </div>
+                <div class="error-message text-danger mt-1" style="display: none;">Numer telefonu musi mieć dokładnie 9 cyfr.</div>
             </div>
-            <div class="mb-3">
-                <label for="country" class="form-label">Kraj</label>
-                <select class="form-select" id="country" required>
-                    <option value="">Wybierz kraj</option>
-                    <!-- Options will be filled by JavaScript -->
-                </select>
-            </div>
+            <div class="mb-3 position-relative">
+                <label for="countryInput" class="form-label">Kraj</label>
+                <input type="text" id="countryInput" class="form-control" autocomplete="off" placeholder="Wpisz kraj">
+                <ul id="suggestions" class="list-group position-absolute w-100" style="z-index: 1000;"></ul>
+              </div>
             <div class="mb-3">
                 <label for="city" class="form-label">Miasto</label>
                 <input type="text" class="form-control" id="city" placeholder="Wpisz miasto" required>
@@ -60,6 +60,7 @@
             <div class="mb-3">
                 <label for="zipCode" class="form-label">Kod pocztowy</label>
                 <input type="text" class="form-control" id="zipCode" placeholder="Wpisz kod pocztowy" required>
+                <div class="error-message text-danger mt-1" style="display: none;">Kod pocztowy musi być w formacie XX-XXX.</div>
             </div>
             <div class="mb-3">
                 <label class="form-label">Rodzaj przesyłki</label>
@@ -120,13 +121,12 @@
         <textarea class="form-control" id="invoiceData" rows="3" placeholder="Wpisz dane do faktury"></textarea>
     </div>
 </div>
-
-            <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
-                data-bs-target="#form-feedback-modal">submit</button>
-        </form>
-    </div>
-
-
+<div class="d-flex justify-content-center">
+    <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
+            data-bs-target="#form-feedback-modal">Zatwierdź</button>
+</div>
+</form>
+</div>
     <!-- Raport kliknięć -->
     <div class="modal fade" id="form-feedback-modal" tabindex="-1" aria-labelledby="raportModalLabel"
         aria-hidden="true">
@@ -141,6 +141,27 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="confirmation-modal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="confirmationModalLabel">Potwierdzenie danych</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Czy wprowadzone dane są poprawne?</p>
+                    <ul id="form-data-summary">
+                        <!-- Summary of form data will be dynamically added here -->
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+                    <button type="button" class="btn btn-primary" id="confirm-submit">Potwierdź</button>
                 </div>
             </div>
         </div>

@@ -1,3 +1,126 @@
 .modal {
     background: #c6d0ff7a;
 }
+
+/* Ogólne style dla formularza */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.error-message {
+    font-size: 0.875rem;
+}
+
+.container {
+    max-width: 600px;
+    margin: 10px auto;
+    background: #ffffff;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.mb-3 {
+    margin-bottom: 0.85rem !important; 
+}
+
+h1 {
+    text-align: center;
+    color: #343a40;
+    margin-bottom: 15px;
+}
+
+/* Style dla pól formularza */
+.form-label {
+    font-weight: bold;
+    color: #495057;
+}
+
+.form-control, .form-select {
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.input-group .form-select {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.input-group .form-control {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+/* Center the submit button and add spacing */
+.d-flex.justify-content-center {
+    text-align: center;
+}
+
+/* Style dla przycisków */
+button[type="submit"] {
+    margin-top: 5px;
+    width: 85%;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Style dla sekcji z fakturą */
+#invoiceFields {
+    padding: 8px;
+    background-color: #f1f3f5;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+/* Style dla listy sugestii */
+#suggestions {
+    max-height: 150px;
+    overflow-y: auto;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+#suggestions li {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #ffffff;
+    transition: background-color 0.2s ease-in-out;
+}
+
+#suggestions li:hover {
+    background-color: #f8f9fa;
+}
+
+/* Style dla modala */
+.modal-content {
+    border-radius: 10px;
+}
+
+.modal-header {
+    background-color: #007bff;
+    color: #ffffff;
+    border-bottom: none;
+}
+
+.modal-footer {
+    border-top: none;
+}
